@@ -28,5 +28,5 @@ const userSchema = new Schema({
         return this.friends.length;
     })
 
-    const User = mongoose.model('User', userSchema);
+    const User = model('User', userSchema);
     module.exports = User;

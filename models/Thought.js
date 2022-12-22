@@ -1,6 +1,33 @@
 const { Schema, model, default: mongoose } = require('mongoose');
+const moment = require('moment');
 
-const thoughSchema = new Schema({
+// Reaction schema
+const reactionSchema = new Schema({
+    reactionId: {
+        type: Schema.Types.ObjectId,
+        default: new mongoose.Types.ObjectId()
+    },
+    reactionBody: {
+        type: String,
+        required: true,
+        maxlength: 280
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+});
+// Reaction getter method for timestamp
+reactionSchema.virtual('formattedDate').get(function () {
+    return moment(this.createdAt).format('MMM, DD, YYYY')
+});
+
+// Thought model / schema
+const thoughtSchema = new Schema({
         thoughtText: {
             type: String,
             required: true,
@@ -12,18 +39,16 @@ const thoughSchema = new Schema({
             default: Date.now
         },
         username: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Thought'
+            type: String,
+            required: true,
         }],
-        reactons: [{
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }],
+        reactons: [reactionSchema],
+    });
+// Thought virtual 
+    thoughtSchema.virtual('formattedDate').get(function () {
+        return moment(this.createdAt).format('MMM, DD, YYYY')
     });
 
-    userSchema.virtual('friendCount').get(function () {
-        return this.friends.length;
-    })
-
-    const User = mongoose.model('User', userSchema);
-    module.exports = User;
+    // Model exports
+    const Thought = model('Thought', thoughtSchema);
+    module.exports = {Thought};
