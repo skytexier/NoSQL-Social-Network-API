@@ -1,7 +1,7 @@
 const { Schema, model, default: mongoose } = require('mongoose');
 const moment = require('moment');
 
-// Reaction schema
+// Reaction schema manifested here as its only used in the Thought model
 const reactionSchema = new Schema({
     reactionId: {
         type: Schema.Types.ObjectId,

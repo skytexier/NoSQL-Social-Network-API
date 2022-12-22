@@ -82,22 +82,12 @@ const thoughtController = {
             { $pull: { reactions: {reactionId: req.params.reactionId}}},
             { runValidators: true, new: true }
             )
-        .then((thought) => 
-        !thought 
-        ? res.status(404).json({ message: 'No thought with that ID'})
-        : User.findOneAndUpdate(
-            { thoughts: req.params.thoughtId },
-            { $pull: { thoughts: req.params.thoughtId }},
-            { new: true}
-        ))
-        .then((user) => {
-        !user 
-        ? res.status(404).json({ message: 'No thought/user with that ID'})
-        : res.json({message: 'User thought deleted!'})
-        })
-        .catch((err) => res.status(500).json(err))
-
-
+            .then((thought) => 
+            !thought ? res.status(404).json({ message: 'No thought with that ID'})
+            : res.json(thought)
+            )
+            .catch((err) => res.status(500).json(err))
+        },
 }
 
 module.exports = thoughtController;
