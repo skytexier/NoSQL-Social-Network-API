@@ -5,7 +5,7 @@ const moment = require('moment');
 const reactionSchema = new Schema({
     reactionId: {
         type: Schema.Types.ObjectId,
-        default: new mongoose.Types.ObjectId()
+        default: () => new Types.ObjectId()
     },
     reactionBody: {
         type: String,
@@ -39,7 +39,8 @@ const thoughtSchema = new Schema({
             default: Date.now
         },
         username: [{
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: 'User',
             required: true,
         }],
         reactons: [reactionSchema],

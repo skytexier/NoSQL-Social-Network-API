@@ -4,7 +4,7 @@ module.exports = {
     getUsers(req, res){
         User.find()
         .select('-__v')
-        .then((user) => res.json(user))
+        .then((user) => res.json({user, message: "All users found"}))
         .catch((err) => res.status(500).json(err));
     },
 
@@ -14,7 +14,7 @@ module.exports = {
         .select('-__v')
         .then((user) => 
         !user ? res.status(404).json({ message: 'No user with that ID'})
-        : res.json(user)
+        : res.json({user, message: "Single user found"})
         )
         .catch((err) => res.status(500).json(err))
     },
@@ -34,7 +34,7 @@ module.exports = {
             )
         .then((user) => 
         !user ? res.status(404).json({ message: 'No user with that ID'})
-        : res.json(user)
+        : res.json({user, message: "User deleted"})
         )
         .catch((err) => res.status(500).json(err))
     },

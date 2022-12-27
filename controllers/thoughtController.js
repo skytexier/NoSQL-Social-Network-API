@@ -5,7 +5,9 @@ const thoughtController = {
     getThoughts(req, res){
         Thought.find()
         .then((thought) => res.json(thought))
-        .catch((err) => res.status(500).json(err));
+        .catch((err) => { 
+            console.log(err)
+            res.status(500).json(err) });
     },
     // Get a single thought by _id
     getSingleThought(req, res){
@@ -14,8 +16,10 @@ const thoughtController = {
             !thought ? res.status(404).json({ message: 'No thought with that ID'})
             : res.json(thought)
             )
-            .catch((err) => res.status(500).json(err))
-    },
+            .catch((err) => { 
+                console.log(err)
+                res.status(500).json(err) });
+        },
     //Post a thought / Create a thought
     createThought(req, res){
         Thought.create(req.body)
@@ -27,8 +31,10 @@ const thoughtController = {
             );
         })
         .then((user) => !user ? res.status(404).json({ message: 'No thought created to that user'})
-        : res.json({message: 'Thought created!'}))
-        .catch((err) => res.status(500).json(err))
+        : res.json({user, message: 'Thought created!'}))
+        .catch((err) => { 
+            console.log(err)
+            res.status(500).json(err) });
     },
     // Update thought by id
     updateThought(req, res){
@@ -41,7 +47,9 @@ const thoughtController = {
         !thought ? res.status(404).json({ message: 'No thought with that ID'})
         : res.json(thought)
         )
-        .catch((err) => res.status(500).json(err))
+        .catch((err) => { 
+            console.log(err)
+            res.status(500).json(err) });
     },
     // Delete thought by id
     deleteThought(req, res){
@@ -59,8 +67,9 @@ const thoughtController = {
         ? res.status(404).json({ message: 'No thought/user with that ID'})
         : res.json({message: 'User thought deleted!'})
         })
-        .catch((err) => res.status(500).json(err))
-
+        .catch((err) => { 
+            console.log(err)
+            res.status(500).json(err) });
     },
     // Add reaction to thought
     addReaction(req, res){
@@ -73,7 +82,9 @@ const thoughtController = {
         !thought ? res.status(404).json({ message: 'No thought with that ID'})
         : res.json(thought)
         )
-        .catch((err) => res.status(500).json(err))
+        .catch((err) => { 
+            console.log(err)
+            res.status(500).json(err) });
     },
     // Delete reaction by id
     deleteReaction(req, res){
@@ -86,7 +97,9 @@ const thoughtController = {
             !thought ? res.status(404).json({ message: 'No thought with that ID'})
             : res.json(thought)
             )
-            .catch((err) => res.status(500).json(err))
+            .catch((err) => { 
+                console.log(err)
+                res.status(500).json(err) });
         },
 }
 

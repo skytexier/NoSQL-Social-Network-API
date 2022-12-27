@@ -4,5 +4,24 @@
     "moment": "^2.29.4",
     "mongoose": "^6.8.1",
     "node": "^19.3.0"
-  }
+  },
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seed/seed.js"
+  },
+  "name": "social-mongo-api",
+  "description": "\"Mongodb API demo\"",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skytexier/NoSQL-Social-Network-API.git"
+  },
+  "author": "Sky Texier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skytexier/NoSQL-Social-Network-API/issues"
+  },
+  "homepage": "https://github.com/skytexier/NoSQL-Social-Network-API#readme"
 }
