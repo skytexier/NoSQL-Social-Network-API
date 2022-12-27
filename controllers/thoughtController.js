@@ -64,7 +64,7 @@ const thoughtController = {
         ))
         .then((user) => {
         !user 
-        ? res.status(404).json({ message: 'No thought/user with that ID'})
+        ? res.status(404).json({ user, message: 'No thought/user with that ID'})
         : res.json({message: 'User thought deleted!'})
         })
         .catch((err) => { 
@@ -94,7 +94,7 @@ const thoughtController = {
             { runValidators: true, new: true }
             )
             .then((thought) => 
-            !thought ? res.status(404).json({ message: 'No thought with that ID'})
+            !thought ? res.status(404).json({ thought, message: 'No thought with that ID'})
             : res.json(thought)
             )
             .catch((err) => { 

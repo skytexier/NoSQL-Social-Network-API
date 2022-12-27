@@ -5,7 +5,7 @@ const moment = require('moment');
 const reactionSchema = new Schema({
     reactionId: {
         type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId()
+        default: () => new mongoose.Types.ObjectId()
     },
     reactionBody: {
         type: String,
@@ -38,12 +38,11 @@ const thoughtSchema = new Schema({
             type: Date,
             default: Date.now
         },
-        username: [{
-            type: Schema.Types.ObjectId,
-            ref: 'User',
+        username: {
+            type: String,
             required: true,
-        }],
-        reactons: [reactionSchema],
+        },
+        reactions: [reactionSchema],
     });
 // Thought virtual 
     thoughtSchema.virtual('formattedDate').get(function () {
