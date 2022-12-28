@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+// Importing our functions from the controllers
 const { getUsers, getSingleUser, createUser, updateUser, deleteUser, addFriend, deleteFriend} = require('../../controllers/userControllers');
 
 // /api/user

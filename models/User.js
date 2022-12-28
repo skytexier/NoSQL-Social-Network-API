@@ -1,5 +1,6 @@
 const { Schema, model, default: mongoose } = require('mongoose');
 
+//User schema with friends virtual
 const userSchema = new Schema({
         username: {
             type: String,
